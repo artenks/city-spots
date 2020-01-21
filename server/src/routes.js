@@ -1,7 +1,10 @@
 import { Router } from 'express';
 
+import SpotController from './app/controllers/SpotController';
+
 const routes = new Router();
 
-routes.get('/', (req, res) => res.json({ message: 'Welcome to Omni CLI' }));
+routes.get('/spots', SpotController.index);
+routes.post('/spots', SpotController.store);
 
 export default routes;

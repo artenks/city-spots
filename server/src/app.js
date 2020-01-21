@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import './bootstrap';
 
 import Youch from 'youch';
 import express from 'express';
@@ -6,9 +6,7 @@ import 'express-async-errors';
 
 import routes from './routes';
 
-// Uncomment this line to enable database access
-// --------
-// import './database';
+import './database';
 
 class App {
   constructor() {
@@ -28,7 +26,7 @@ class App {
   }
 
   exceptionHandler() {
-    this.server.use(async (err, req, res, next) => {
+    this.server.use(async (err, req, res, _next) => {
       if (process.env.NODE_ENV === 'development') {
         const errors = await new Youch(err, req).toJSON();
 
