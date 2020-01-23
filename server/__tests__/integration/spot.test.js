@@ -24,4 +24,13 @@ describe('Spot', () => {
     expect(response.body).toHaveProperty('_id');
     done();
   });
+
+  it('should not be able to register', async done => {
+    const response = await request(app)
+      .post('/spots')
+      .send();
+
+    expect(response.status).toBe(400);
+    done();
+  });
 });
